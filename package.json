@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run server",
-    "server": "nodemon --inspect=0.0.0.0:5858 src/server.js",
+    "server": "nodemon --inspect=0.0.0.0:5858 src/index.js",
     "lint": "eslint src/"
   },
   "author": "Charlie",
