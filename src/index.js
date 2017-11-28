@@ -1,4 +1,5 @@
 const http = require('http');
+const { register, unRegister, onDemand } = require('./users');
 
 const hostname = '127.0.0.1';
 const port = 3000;
