@@ -2,10 +2,10 @@
   "name": "newsletter",
   "version": "1.0.0",
   "description": "A Rest API to send information (cities) by mails",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "npm run server",
-    "server": "nodemon --inspect=0.0.0.0:5858 src/index.js",
+    "server": "nodemon --inspect=0.0.0.0:5858 app.js",
     "lint": "eslint src/"
   },
   "author": "Charlie",
@@ -14,10 +14,14 @@
     "express": "^4.15.3",
     "request": "^2.81.0",
     "serve-index": "^1.9.0",
-    "mongo":""
+    "mongodb": "^2.2.16",
+    "mongoose": "*"
   },
   "devDependencies": {
     "eslint": "^4.10.0",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0",
+    "mongoose": "^4.8.1"
   }
 }

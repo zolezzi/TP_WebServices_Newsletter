@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>The Newsletter</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- User Login Show/Hide logic and style-->
+    <script src="js/userLog.js"></script>
+    <link href="css/userLog.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/creative.min.css" rel="stylesheet">
+
+    <!-- Temporary navbar container fix -->
+    <style>
+    .navbar-toggler {
+        z-index: 1;
+    }
+    
+    @media (max-width: 576px) {
+        nav > .container {
+            width: 100%;
+        }
+    }
+
+    .juego {
+        display: none;
+    }
+
+    .pantalla {
+        background-image: url("../img/pantalla.jpeg");
+        background-color: green;
+    }
+
+    .cifra {
+        color: white;
+        border-color: transparent;
+        background-color: transparent;
+    }
+
+    .botonera {
+        background-image: url("../img/madera.jpg");
+        background-color: brown;
+    }
+
+    .play-buttons {
+        display: none;
+        text-transform: uppercase;
+        font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .btn-number {
+        color: white;
+        border-color: white;
+        background-color: #75bdd1;
+        width: 60px;
+        height: 60px;
+        border-radius: 20px; }
+        .btn-number:focus, .btn-number.focus {
+            color: white;
+            border-color: white;
+            background-color: #75bdd1; }
+        .btn-number:hover {
+            color: white;
+            border-color: white;
+            background-color: #75bdd1; }
+        .btn-number:active, .btn-number.active,
+        .open > .btn-number.dropdown-toggle {
+        color: white;
+        border-color: white;
+        background-color: #75bdd1; }
+        .btn-number:active:hover, .btn-number:active:focus, .btn-number:active.focus, .btn-number.active:hover, .btn-number.active:focus, .btn-number.active.focus,
+        .open > .btn-number.dropdown-toggle:hover,
+        .open > .btn-number.dropdown-toggle:focus,
+        .open > .btn-number.dropdown-toggle.focus {
+        color: white;
+        border-color: white;
+        background-color: #75bdd1; }
+        .btn-number:active, .btn-number.active,
+        .open > .btn-number.dropdown-toggle {
+        background-image: none; }
+        .btn-number.disabled:hover, .btn-number.disabled:focus, .btn-number.disabled.focus, .btn-number[disabled]:hover, .btn-number[disabled]:focus, .btn-number[disabled].focus,
+        fieldset[disabled] .btn-number:hover,
+        fieldset[disabled] .btn-number:focus,
+        fieldset[disabled] .btn-number.focus {
+        border-color: white;
+        background-color: #75bdd1; }
+        .btn-number .badge {
+            color: white;
+            background-color: #75bdd1; }
+
+    .btn-simbol {
+        color: white;
+        border-color: white;
+        background-color: red;
+        width: 60px;
+        height: 60px;
+        border-radius: 20px; }
+        .btn-simbol:focus, .btn-simbol.focus {
+            color: white;
+            border-color: white;
+            background-color: red; }
+        .btn-simbol:hover {
+            color: white;
+            border-color: white;
+            background-color: red; }
+        .btn-simbol:active, .btn-simbol.active,
+        .open > .btn-simbol.dropdown-toggle {
+        color: white;
+        border-color: white;
+        background-color: red; }
+        .btn-simbol:active:hover, .btn-simbol:active:focus, .btn-simbol:active.focus, .btn-simbol.active:hover, .btn-simbol.active:focus, .btn-simbol.active.focus,
+        .open > .btn-simbol.dropdown-toggle:hover,
+        .open > .btn-simbol.dropdown-toggle:focus,
+        .open > .btn-simbol.dropdown-toggle.focus {
+        color: white;
+        border-color: white;
+        background-color: red; }
+        .btn-simbol:active, .btn-simbol.active,
+        .open > .btn-simbol.dropdown-toggle {
+        background-image: none; }
+        .btn-simbol.disabled:hover, .btn-simbol.disabled:focus, .btn-simbol.disabled.focus, .btn-simbol[disabled]:hover, .btn-simbol[disabled]:focus, .btn-simbol[disabled].focus,
+        fieldset[disabled] .btn-simbol:hover,
+        fieldset[disabled] .btn-simbol:focus,
+        fieldset[disabled] .btn-simbol.focus {
+        border-color: white;
+        background-color: red; }
+        .btn-simbol .badge {
+            color: white;
+            background-color: red; }
+    </style>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-light hidden-sm-down" id="mainNav">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarExample">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#page-top">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead hidden-sm-down">
+        <div class="header-content">
+            <div class="header-content-inner text-left">
+                <div class="btn-group log-buttons">
+                    <button type="button" class="btn btn-primary" onclick="mostrarLogIn()">Log In</button>
+                    <button type="button" class="btn btn-primary" onclick="mostrarLogUp()">Log Up</button>
+                </div>
+
+                <div class="login log-in">
+                    <form onsubmit="logIn()">
+                        <div class="form-group">
+                            <label for="email">Usuario:</label>
+                            <input type="text" class="form-control" id="email" placeholder="Ingresá tu Nombre de Usuario" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Contraseña:</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Ingresá tu Contraseña" name="pwd" required>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-cancel" onclick="cancelarLogIn()">Cancelar</button>
+                            <button type="submit" class="btn btn-default btn-accept">Acceder</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="login log-up">
+                    <form>
+                        <div class="form-group">
+                            <label for="email">Usuario:</label>
+                            <input type="text" class="form-control" id="emailReg" placeholder="Ingresá tu Nombre de Usuario" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Contraseña:</label>
+                            <input type="password" class="form-control" id="pwdReg" placeholder="Ingresá tu Contraseña" name="pwd" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Repetir Contraseña:</label>
+                            <input type="password" class="form-control" id="pwdRegBis" placeholder="Ingresá tu Contraseña nuevamente" name="pwd" required>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-cancel" onclick="cancelarLogUp()">Cancelar</button>
+                            <button type="submit" class="btn btn-default btn-accept">Registrarse</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+
+
+   
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <h2 class="section-heading">Contacto</h2>
+                </div>
+                <div class="col-lg-4 offset-lg-2 text-center">
+                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                    <p>Para cualquier consulta, pueden contactarnos por medio de nuestra casilla de correo:</p>
+                    <p><a href="mailto:root@thebombgame.com.ar">newsletter@gmail.com.ar</a></p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <hr class="primary">
+                    <h2 class="section-heading">Y ahora...</h2>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <p>... ya nos conocés.</p>
+                    <p>Te invitamos a conocer <b>The Newsletter</b>.</p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript -->
+
+    <script src="vendor/tether/tether.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/creative.min.js"></script>
+
+</body>
+
+</html>
