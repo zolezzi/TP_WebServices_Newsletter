@@ -1,6 +1,6 @@
 const http = require('http');
 const { register, unRegister, onDemand } = require('./users');
-const express = require("express");
+const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const hostname = '127.0.0.1';
@@ -9,7 +9,7 @@ const port = 3001;
 const usersRouter = require('./users.js');
 
 
-//app.use(express.static(__dirname + "/../../dist/frontend"));
+app.use(express.static("./src"));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 //app.use(usersRouter);
