@@ -5,17 +5,12 @@ const app = express();
 const bodyParser = require('body-parser');
 const hostname = '127.0.0.1';
 const port = 3001;
-
-const usersRouter = require('./users.js');
-
+const User = require("./models/userModels.js").User;
 
 app.use(express.static("./src"));
-app.use(bodyParser.urlencoded({extended:false}));
+
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-//app.use(usersRouter);
-
-
-app.use(express.static('./src'));
 
 app.all('*', (req, res)=>{
     res.sendFile(process.cwd()+'/index.html');
@@ -26,10 +21,6 @@ const server = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'text/plain');
   res.end('Hola Mundo\n');
 });
-
-//server.listen(port, hostname, () => {
-//  console.log(`Server running at http://${hostname}:${port}/`);
-//});
 
 app.listen(3001, () => console.log('SERVER RUNNING ON PORT 3000'));
 
