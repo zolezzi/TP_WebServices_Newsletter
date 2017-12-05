@@ -14,6 +14,6 @@ app.all('*', (req, res)=>{
     res.sendFile(process.cwd()+'/src/index.html');
 });
 
-server.listen(process.PORT || 3001);
+server.listen(process.PORT || 3000);
 
 
