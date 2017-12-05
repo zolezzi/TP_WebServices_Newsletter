@@ -23,13 +23,5 @@ app.post("/register",function(req,res){
     return register(req, User);
 });
 
-
-app.get("/", function(req,res){
-    
-    User.find(function(err,doc){
-        console.log(doc);
-    })
-});
-
 app.listen(3000, () => console.log('SERVER RUNNING ON PORT 3000'));
 
