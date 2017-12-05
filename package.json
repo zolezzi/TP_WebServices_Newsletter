@@ -12,10 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3",
-    "request": "^2.81.0",
-    "serve-index": "^1.9.0",
     "mongodb": "^2.2.16",
-    "mongoose": "*"
+    "mongoose": "*",
+    "nodemailer": "^4.4.0",
+    "request": "^2.81.0",
+    "serve-index": "^1.9.0"
   },
   "devDependencies": {
     "eslint": "^4.10.0",

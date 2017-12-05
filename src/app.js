@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const hostname = '127.0.0.1';
-const port = 3001;
+const port = 3000;
 const User = require("./models/userModels.js").User;
 
 app.use(express.static("./src"));
@@ -22,5 +22,5 @@ const server = http.createServer((req, res) => {
   res.end('Hola Mundo\n');
 });
 
-app.listen(3001, () => console.log('SERVER RUNNING ON PORT 3000'));
+app.listen(3000, () => console.log('SERVER RUNNING ON PORT 3000'));
 
