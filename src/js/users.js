@@ -1,40 +1,39 @@
 const { mk_error_response, mk_ok_response } = require('./utils');
 const mongoDb = require('mongodb');
-const model  = require('../../model');
 
-function mostrarLogIn(){
+function mostrarLogIn() {
     $('.log-in').slideToggle();
     $('.log-buttons').slideToggle();
 }
 
-function mostrarLogUp(){
+function mostrarLogUp() {
     $('.log-up').slideToggle();
     $('.log-buttons').slideToggle();
 }
 
-function cancelarLogIn(){
+function cancelarLogIn() {
     $('.log-buttons').slideToggle();
     $('.log-in').slideToggle();
 }
 
-function cancelarLogUp(){
+function cancelarLogUp() {
     $('.log-buttons').slideToggle();
     $('.log-up').slideToggle();
 }
 
-function setSearchParams(){
+function setSearchParams() {
     $('.log-up').slideToggle();
     $('.search-params').slideToggle();
 }
 
-function cancelarSearchParams(){
+function cancelarSearchParams() {
     $('.log-up').slideToggle();
     $('.search-params').slideToggle();
 }
 
-function addCity(){
+function addCity() {
     let citiesSearcher = $('#cities-searcher')[0];
-    if (citiesSearcher != undefined){
+    if (citiesSearcher != undefined) {
         if ($('#cities')[0].value.length > 0) {
             $('#cities')[0].value += ".\n" + citiesSearcher.value;
         } else {
@@ -43,46 +42,46 @@ function addCity(){
     }
 }
 
-function clearCities(){
+function clearCities() {
     $('#cities')[0].value = "";
 }
 
-function register (req, User) {
-    
-    User.findOne({email: req.body.email},function(err,docs){
-        if(doc.email == req.body.email){
- 
+function register(req, User) {
+
+    User.findOne({ email: req.body.email }, function (err, docs) {
+        if (doc.email == req.body.email) {
+
             throw Exception("El email ya existe intente con otro");
-            
+
         }
     });
-    
-    User.findOne({username: req.body.username},function(err,docs){
-        if(doc.email == req.body.username){
- 
+
+    User.findOne({ username: req.body.username }, function (err, docs) {
+        if (doc.email == req.body.username) {
+
             throw Exception("El nombre usuario ya existe intente con otro");
-            
+
         }
     });
     let numberValue = 1;
-	let user = new User({
-		email: req.body.email,
-		password: req.body.password,
-		username: req.body.username,
-		searchData: req.body.searchData
-			
-	});
+    let user = new User({
+        email: req.body.email,
+        password: req.body.password,
+        username: req.body.username,
+        searchData: req.body.searchData
 
-	user.save(function(err,user,numberValue){
+    });
 
-		if(err){
-			console.log(String(err));
-		}	
-		res.send("Se pudo registrar con existo!");
-	});
+    user.save(function (err, user, numberValue) {
+
+        if (err) {
+            console.log(String(err));
+        }
+        res.send("Se pudo registrar con existo!");
+    });
 }
 
-function onDemand (email) {
+function onDemand(email) {
     let jsonReq = JSON.parse(getJsonReq(email));
     console.log('crear lógica para interpretar el jsonReq, escribir y enviar el email');
 }
@@ -97,13 +96,13 @@ function saveUser(email, jsonReq) {
 }
 
 function deleteUser(req, User) {
-    User.findOne({email: req.body.email},function(err,user){
-        if(err){
-			console.log(String(err));
-		}else{
+    User.findOne({ email: req.body.email }, function (err, user) {
+        if (err) {
+            console.log(String(err));
+        } else {
             user.remove();
         }
-       
+
     });
     console.log('crear lógica para eliminar un usuario');
 }
@@ -131,4 +130,9 @@ function changeSearchParams() {
 function logOut() {
     $('.log-in').slideToggle();
     $('.logged-options').slideToggle();
+}
+
+module.exports = {
+    register,
+    onDemand
 }
