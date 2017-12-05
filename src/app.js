@@ -1,11 +1,12 @@
 const http = require('http');
-const { register, unRegister, onDemand } = require('./users');
+//const { register, unRegister, onDemand } = require('./users');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const hostname = '127.0.0.1';
 const port = 3000;
 const User = require("./models/userModels.js").User;
+const {register} = require("./js/users.js");
 
 app.use(express.static("./src"));
 
@@ -15,6 +16,23 @@ app.use(bodyParser.json());
 app.all('*', (req, res)=>{
     res.sendFile(process.cwd()+'/index.html');
 });
+
+app.post("/register",function(req,res){
+  User.find(function(err,doc){
+      console.log(doc);
+  })
+  return register(req, User);
+});
+
+
+app.get("/", function(req,res){
+  
+  User.find(function(err,doc){
+      console.log(doc);
+  })
+});
+
+console.log(User.find());
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
