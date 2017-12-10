@@ -34,4 +34,5 @@ user_schema.virtual("password_confirmation").get(function(){
 
 const User = mongoose.model("User", user_schema);
 
-module.exports.User = User;
+export default User;
+//module.exports.User = User;

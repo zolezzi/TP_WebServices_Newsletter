@@ -1,5 +1,8 @@
 const { mk_error_response, mk_ok_response } = require('./utils');
 const mongoDb = require('mongodb');
+//const User = require("../models/usersModels.js");
+import User from "../models/usersModels.js";
+
 
 function mostrarLogIn() {
     $('.log-in').slideToggle();
@@ -46,8 +49,9 @@ function clearCities() {
     $('#cities')[0].value = "";
 }
 
-function register(req, User) {
+function register() {
 
+    console.log(User);
     User.findOne({ email: req.body.email }, function (err, docs) {
         if (doc.email == req.body.email) {
 
