@@ -1,5 +1,4 @@
 const http = require('http');
-const { register} = require('./src/js/users');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -71,6 +70,11 @@ function cancelarSearchParams() {
     $('.search-params').slideToggle();
 }
 
+function finishLogUp(){
+    $('.search-params').slideToggle();
+    $('.logged-options').slideToggle();
+}
+
 function addCity() {
     let citiesSearcher = $('#cities-searcher')[0];
     if (citiesSearcher != undefined) {
@@ -88,80 +92,123 @@ function clearCities() {
 
 function register() {
 
+    let error = "";
+
     console.log(user);
-    user.findOne({ email: req.body.email }, function (err, doc) {
-        if (doc.email == req.body.email) {
-
-            throw Exception("El email ya existe intente con otro");
-
+    user.findOne({ email: $('#emailReg')[0].value }, function (err, doc) {
+        if (doc.email == $('#emailReg')[0].value) {
+            error += "El email '"+ $('#emailReg')[0].value +
+                     "' ya está registrado en el sistema. Utilice otro.\n";
         }
     });
 
-    user.findOne({ username: req.body.username }, function (err, doc) {
-        if (doc.email == req.body.username) {
-
-            throw Exception("El nombre usuario ya existe intente con otro");
-
+    user.findOne({ username: $('#userReg')[0].value }, function (err, doc) {
+        if (doc.email == $('#userReg')[0].value) {
+            error += "El nombre de usuario '" + $('#userReg')[0].value +
+                     "' ya está registrado. Intente con otro.";
         }
     });
+
+    if(error.length > 0){
+        showAlert('Datos ya registrados', error, cancelarSearchParams);
+        return;
+    }
 
     let numberValue = 1;
     let user = new User({
-        email: req.body.email,
-        password: req.body.password,
-        username: req.body.username,
-        searchData: req.body.searchData
+        email: $('#emailReg')[0].value,
+        password: $('#pwdReg')[0].value,
+        username: $('#userReg')[0].value,
+        searchData: getSearchData()
 
     });
 
     user.save(function (err, user, numberValue) {
 
         if (err) {
-            console.log(String(err));
+            showAlert('Error al registrar usuario', err, cancelarSearchParams);
+        } else {
+            showAlert('Registro completo', 'Su cuenta ha sido registrada con éxito', finishLogUp);
         }
-        res.send("Se pudo registrar con existo!");
     });
 }
 
-function onDemand(email) {
-    let jsonReq = JSON.parse(getJsonReq(email));
-    console.log('crear lógica para interpretar el jsonReq, escribir y enviar el email');
+function getSearchData() {
+    let searchData = {};
+    let cities = $('#cities')[0].value.split('.');
+    searchData.add({ cities : cities });
+    let regChecks = {};
+    $('.reg-check').forEach(function(regCheck) {
+        if(regCheck.checked){
+            regChecks.add(regCheck.name);
+        }
+    });
+    searchData.add({ regChecks : regChecks });
+    return JSON.stringify(searchData);
 }
 
-function registeredUser(email) {
-    console.log('crear lógica para determinar si el email ya está registrado o no');
-    return false;
+function onDemand() {
+    let searchData = getSearchDataOfCurrentUser();
+    console.log('crear lógica para interpretar el searchData, escribir y enviar el email');
 }
 
-function saveUser(email, jsonReq) {
-    console.log('crear lógica para guardar un usuario, validando el jsonReq');
+function deleteUser() {
+    user.findOne({ email: $('#email')[0].value }, function (err, user) {
+        user.remove();
+        showAlert('Usuario eliminado', 'Su usuario ha sido eliminado del sistema.', finishLogDown)
+    });
 }
 
-function deleteUser(req, User) {
-    User.findOne({ email: req.body.email }, function (err, user) {
+function finishLogDown(){
+    $('.logged-options').slideToggle();
+    $('.log-buttons').slideToggle();
+}
+
+function getSearchDataOfCurrentUser() {
+    let searchData = "{}";
+    User.findOne({ email: $('#email')[0].value }, function (err, user) {
         if (err) {
-            console.log(String(err));
+            showAlert('Error',
+            'Ha habido un error intentando obtener sus datos de búsqueda. Vuelva a intentarlo.',
+            getSearchDataOfCurrentUser)
         } else {
             user.remove();
+            searchData = user.searchData;
         }
-
     });
-    console.log('crear lógica para eliminar un usuario');
+    return JSON.parse(searchData);
 }
 
-function getJsonReq(email) {
-    console.log('crear lógica que, dado un email, devuelva su JsonReq');
-    return '{}';
+function logIn() {
+    User.findOne({ email: $('#email')[0].value }, function (errorEmail, user) {
+        if (errorEmail) {
+            User.findOne({ username: $('#email')[0].value }, function (errorName, user) {
+                if (errorName) {
+                    showAlert("Usuario inexistente", "No existen datos en el sistema " +
+                    "asociados a la cuenta '" + $('#email')[0].value + "'.",
+                    cancelarLogIn)
+                } else {
+                    checkPassword(user);
+                }
+            });
+        } else {
+            checkPassword(user);
+        }
+    });
+}
+
+function checkPassword(user) {
+    if ($('#pwd')[0].value.equals(user.password)) {
+        showLoggedUserOptions();
+    } else {
+        showAlert("Password incorrecto", "El password ingresado no corresponde al usuario '" +
+        $('#email')[0].value + "'.", cancelarLogIn);
+    }
 }
 
 function showLoggedUserOptions() {
-    if (!registeredUser()) {
-        //ToDo... corregir if
-        $('.log-in').slideToggle();
-        $('.logged-options').slideToggle();
-    } else {
-
-    }
+    $('.log-in').slideToggle();
+    $('.logged-options').slideToggle();
 }
 
 function changeSearchParams() {
@@ -174,5 +221,19 @@ function logOut() {
     $('.logged-options').slideToggle();
 }
 
-app.listen(3000, () => console.log('SERVER RUNNING ON PORT 3000'));
+function showAlert(title, text, closeFunction){
+    $('.modal-title')[0].innerText = title;
+    $('.modal-text')[0].innerText = text;
+    $('.modal-button')[0].onclick = closeFunction;
+    $('#alert').modal()
+}
+
+module.exports = {
+    mostrarLogUp, mostrarLogIn, cancelarLogIn, logIn,
+    cancelarLogUp, setSearchParams, addCity, clearCities,
+    cancelarSearchParams, register, logOut, changeSearchParams,
+    onDemand, deleteUser
+}
+
+app.listen(port, () => console.log('SERVER RUNNING ON PORT ' + port));
 

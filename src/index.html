@@ -25,8 +25,7 @@
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- User Login logic and style-->
-    <script src="app.js"></script>
-    <script src="js/users.js"></script>
+    <script src="../app.js"/>
 
     <link href="css/userLog.css" rel="stylesheet">
 
@@ -57,7 +56,7 @@
                         </div>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-cancel" onclick="cancelarLogIn()">Cancelar</button>
-                            <button type="submit" class="btn btn-default btn-accept" onclick="showLoggedUserOptions()">Acceder</button>
+                            <button type="submit" class="btn btn-default btn-accept" onclick="logIn()">Acceder</button>
                         </div>
                     </form>
                 </div>
@@ -104,19 +103,19 @@
                         </div>
                         <div class="form-group">
                             <label for="tweets">Tweets</label>
-                            <input type="checkbox" class="form-control" id="tweets" name="tweets">
+                            <input type="checkbox" class="form-control reg-check" id="tweets" name="tweets">
                         </div>
                         <div class="form-group">
                             <label for="translated">Traducidos</label>
-                            <input type="checkbox" class="form-control" id="translated" name="translated">
+                            <input type="checkbox" class="form-control reg-check" id="translated" name="translated">
                         </div>
                         <div class="form-group">
                             <label for="places">Lugares</label>
-                            <input type="checkbox" class="form-control" id="places" name="places">
+                            <input type="checkbox" class="form-control reg-check" id="places" name="places">
                         </div>
                         <div class="form-group">
                             <label for="weather">Clima</label>
-                            <input type="checkbox" class="form-control" id="weather" name="weather">
+                            <input type="checkbox" class="form-control reg-check" id="weather" name="weather">
                         </div>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-cancel" onclick="cancelarSearchParams()">Cancelar</button>
@@ -138,6 +137,22 @@
 
         </div>
     </header>
+
+    <div id="alert" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-text"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default modal-button" data-dismiss="modal">ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap core JavaScript -->
 
