@@ -1,8 +1,30 @@
-const { mk_error_response, mk_ok_response } = require('./utils');
-const mongoDb = require('mongodb');
-//const User = require("../models/usersModels.js");
-import User from "../models/usersModels.js";
+//const { mk_error_response, mk_ok_response } = require('./utils');
 
+const user = require("../models/usersModels");
+
+var mongoose = require('mongoose');
+
+//Set up default mongoose connection
+var mongoDB = 'mongodb://127.0.0.1/my_database';
+mongoose.connect(mongoDB, {
+  useMongoClient: true
+});
+// Get Mongoose to use the global promise library
+mongoose.Promise = global.Promise;
+//Get the default connection
+var db = mongoose.connection;
+
+var userDB = mongoose.model("User");
+console.log(user);
+//console.log(userDB.Query);
+
+user.find({},function(err,doc){
+    console.log(doc);
+});
+
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 function mostrarLogIn() {
     $('.log-in').slideToggle();
@@ -51,8 +73,8 @@ function clearCities() {
 
 function register() {
 
-    console.log(User);
-    User.findOne({ email: req.body.email }, function (err, docs) {
+    console.log(user);
+    user.findOne({ email: req.body.email }, function (err, doc) {
         if (doc.email == req.body.email) {
 
             throw Exception("El email ya existe intente con otro");
@@ -60,13 +82,14 @@ function register() {
         }
     });
 
-    User.findOne({ username: req.body.username }, function (err, docs) {
+    user.findOne({ username: req.body.username }, function (err, doc) {
         if (doc.email == req.body.username) {
 
             throw Exception("El nombre usuario ya existe intente con otro");
 
         }
     });
+
     let numberValue = 1;
     let user = new User({
         email: req.body.email,

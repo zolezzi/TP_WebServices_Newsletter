@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <base href'/'> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -13,6 +13,9 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- JQuery imports-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
     <!-- Custom fonts for this template -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -21,12 +24,10 @@
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
-    <!-- JQuery imports-->
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-    <script src="http://requirejs.org/docs/release/2.2.0/minified/require.js"></script>
-
     <!-- User Login logic and style-->
+    <script src="app.js"></script>
     <script src="js/users.js"></script>
+
     <link href="css/userLog.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -61,7 +62,7 @@
                     </form>
                 </div>
                 <div class="login log-up">
-                    <form>
+                    <form >
                         <div class="form-group">
                             <label for="email">Usuario:</label>
                             <input type="text" class="form-control" id="userReg" placeholder="Ingresá tu Nombre de Usuario" name="user" required>
@@ -85,7 +86,7 @@
                     </form>
                 </div>
                 <div class="login search-params">
-                    <form>
+                    <form >
                         <div class="form-group">
                             <label>Elegí los datos que querés que enviémos a tu E-mail</label>
                         </div>
